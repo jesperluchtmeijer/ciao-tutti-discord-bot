@@ -1,10 +1,11 @@
 require("dotenv").config();
 const { REST, Routes, ApplicationCommandOptionType } = require("discord.js");
+const { name } = require("../services/databaseService");
 
 const commands = [
   {
     name: "add-reference",
-    description: "Add a fury reference for the anti-futy tracker",
+    description: "Add a fury reference for the anti-fury tracker",
     options: [
       {
         name: "reference",
@@ -13,6 +14,32 @@ const commands = [
         required: true,
       },
     ],
+  },
+  {
+    name: "add-quote",
+    description: "Add a quote to the quote book",
+    options: [
+      {
+        name: "quote",
+        type: ApplicationCommandOptionType.String,
+        description: "The quote",
+        required: true,
+      },
+      {
+        name: "author",
+        type: ApplicationCommandOptionType.String,
+        description: "Who said the quote",
+        required: true,
+      },
+    ],
+  },
+  {
+    name: "quote",
+    description: "Get a random quote",
+  },
+  {
+    name: "level",
+    description: "Check your level and XP.",
   },
 ];
 
