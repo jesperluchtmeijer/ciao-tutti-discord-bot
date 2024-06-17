@@ -5,7 +5,7 @@ const { name } = require("../services/databaseService");
 const commands = [
   {
     name: "add-reference",
-    description: "Add a fury reference for the anti-fury tracker",
+    description: "Add a furry reference for the anti-furry tracker",
     options: [
       {
         name: "reference",

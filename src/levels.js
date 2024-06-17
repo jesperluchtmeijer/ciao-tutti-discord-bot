@@ -1,5 +1,6 @@
-// levels.js
 const { getUser, addUser, updateUser } = require("./database");
+
+// levels.js
 
 const roles = {
   5: "1244723337444458696",
@@ -33,7 +34,20 @@ async function handleLeveling(message) {
     const role = roles[userData.level];
     if (role) {
       const guildMember = await message.guild.members.fetch(message.author.id);
-      await guildMember.roles.add(role);
+      const guildRole = message.guild.roles.cache.get(role);
+      if (!guildRole) {
+        // Role doesn't exist, create it
+        const createdRole = await message.guild.roles.create({
+          data: {
+            name: `Level ${userData.level}`,
+            color: "BLUE", // Customize the role color as needed
+          },
+        });
+        await guildMember.roles.add(createdRole);
+      } else {
+        // Role exists, add it to the user
+        await guildMember.roles.add(guildRole);
+      }
     }
   }
 

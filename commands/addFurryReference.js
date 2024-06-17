@@ -2,12 +2,12 @@ const database = require("../services/databaseService.js");
 const { v4: uuid } = require("uuid");
 const db = database;
 
-module.exports = function antiFuryReference(client) {
-  console.log("anti-fury is running");
+module.exports = function antiFurryReference(client) {
+  console.log("anti-furry is running");
   console.log(client.user.id);
 
   const referenceExists = db
-    .prepare("SELECT * FROM fury_references WHERE reference = ?")
+    .prepare("SELECT * FROM furry_references WHERE reference = ?")
     .get(client.reference);
 
   if (referenceExists) {
@@ -22,7 +22,7 @@ module.exports = function antiFuryReference(client) {
   const author = client.user.id;
 
   db.prepare(
-    "INSERT INTO fury_references (id, reference, usages, author) VALUES (?, ?, ?, ?)"
+    "INSERT INTO furry_references (id, reference, usages, author) VALUES (?, ?, ?, ?)"
   ).run(id, referenceLower, usages, author);
   console.log("Reference added!");
   return;

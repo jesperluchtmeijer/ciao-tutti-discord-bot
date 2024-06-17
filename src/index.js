@@ -6,8 +6,8 @@ const {
   REST,
   Routes,
 } = require("discord.js");
-const antiFury = require("./anti-fury");
-const antiFuryReference = require("../commands/addFuryReference");
+const antiFurry = require("./anti-furry");
+const antiFurryReference = require("../commands/addFurryReference");
 const addQuote = require("../commands/addQuote");
 const quote = require("../commands/quote");
 const { handleLeveling, getLevel } = require("./levels");
@@ -48,7 +48,7 @@ client.on("ready", (c) => {
   //   client.user.setActivity(status[random]);
   //   console.log(`Status: ${status[random].name}`);
   // }, 100000);
-  antiFury(client);
+  antiFurry(client);
 });
 
 client.on("interactionCreate", async (interaction) => {
@@ -61,7 +61,7 @@ client.on("interactionCreate", async (interaction) => {
     const user = interaction.user;
     console.log(reference);
     referenceObject = { reference: reference, user: user };
-    antiFuryReference(referenceObject);
+    antiFurryReference(referenceObject);
     interaction.reply(`Reference: ${reference} added!`);
   }
   if (interaction.commandName === "add-quote") {
